@@ -27,9 +27,16 @@ public class PlayerMover : MonoBehaviour
             _whatIsGround);
         float x = Input.GetAxisRaw("Horizontal");
 
+        Debug.Log(_speed * x);
+
         if (grounded)
         {
-            _rigidbody.velocity = new Vector2(_speed * x, _rigidbody.velocity.y);
+            _rigidbody.velocity = new Vector2(_speed * x, _rigidbody.velocity.y);  // Моментально задаємо швидкість
+            // _transform.position = new Vector2(_transform.position.x + _speed * x, _transform.position.y);  // Проходить через стіни при великій швидкості)))
+            // _transform.Translate(new Vector2(_speed * x, 0), Space.World);  // Додаємо до поточного значення
+            // _rigidbody.AddForce(new Vector2(_speed * x, 0));  // Плавно додаємо і зменшуємо швидкість
+            // _rigidbody.AddRelativeForce(new Vector2(_speed * x, 0)); // Плавно додаємо і зменшуємо швидкість, але в локальному просторі
+
         }
 
         if ((x < 0 && _facingRight) || (x > 0 && !_facingRight))
